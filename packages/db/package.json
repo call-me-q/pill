@@ -1,0 +1,15 @@
+{
+  "name": "@vetamin/db",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./dist/main.js"
+  },
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build-db": "tsup",
+    "generate-db": "npx drizzle-kit generate",
+    "migrate-db": "npx drizzle-kit migrate",
+    "up-db": "npx drizzle-kit up"
+  }
+}

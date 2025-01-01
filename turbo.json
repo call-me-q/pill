@@ -1,0 +1,28 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD",
+    "POSTGRES_DB",
+    "POSTGRES_PORT",
+    "POSTGRES_HOST"
+  ],
+  "tasks": {
+    "dev-server": {
+      "persistent": true,
+      "cache": false,
+      "dependsOn": ["^build-db"]
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "build-constants": {
+      "outputs": ["./dist/**"]
+    },
+    "build-db": {
+      "outputs": ["./dist/**"],
+      "dependsOn": ["^build-constants"]
+    }
+  }
+}

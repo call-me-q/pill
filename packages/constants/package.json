@@ -1,0 +1,12 @@
+{
+  "name": "@vetamin/constants",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./dist/main.js"
+  },
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "scripts": {
+    "build-constants": "tsup"
+  }
+}

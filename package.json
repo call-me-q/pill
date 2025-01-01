@@ -1,0 +1,49 @@
+{
+  "name": "vetamin",
+  "version": "0.1.0",
+  "description": "Monorepo for Vetamin",
+  "license": "UNLICENSED",
+  "author": "Muhammad Tsany Qudsi <phlacx@hotmail.com>",
+  "workspaces": [
+    "./apps/*",
+    "./packages/*"
+  ],
+  "scripts": {
+    "auth:secret": "npx @better-auth/cli@latest secret",
+    "build:constants": "dotenvx run -- npx turbo build-constants",
+    "build:db": "dotenvx run -- npx turbo build-db",
+    "db:gen": "dotenvx run -- npm run generate-db -w @vetamin/db",
+    "db:mig": "dotenvx run -- npm run migrate-db -w @vetamin/db",
+    "dev": "dotenvx run -- npx turbo dev",
+    "update-typescript": "npm install typescript@latest --workspaces"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.22.0",
+    "@hono/node-server": "^1.13.5",
+    "@vetamin/constants": "*",
+    "@vetamin/db": "*",
+    "better-auth": "^0.7.6-beta.3",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.36.1",
+    "hono": "^4.6.9",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.11.17",
+    "@types/pg": "^8.11.10",
+    "@vetamin/tsconfig": "*",
+    "drizzle-kit": "^0.28.0",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "3.3.3",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.13.0"
+  },
+  "packageManager": "npm@10.9.0"
+}

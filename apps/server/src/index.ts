@@ -1,16 +1,15 @@
 import { serve } from "@hono/node-server";
-import { Hono } from "hono";
 
-const app = new Hono();
+import { certpath, keypath } from "./constants.js";
+import { server } from "./libs/server.js";
+import { getServeOptions } from "./libs/utils.js";
 
-app.get("/", (c) => {
+server.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
-const port = 3000;
-console.log(`Server is running on http://localhost:${port}`);
+const serverInstance = getServeOptions(keypath, certpath);
 
-serve({
-  fetch: app.fetch,
-  port,
+serve(serverInstance, (info) => {
+  console.log(`Server is running on ${info.address}:${info.port}`);
 });

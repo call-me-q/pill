@@ -1,4 +1,4 @@
-import { db } from "@vetamin/db"; // your drizzle instance
+import { db } from "@pill/db"; // your drizzle instance
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 

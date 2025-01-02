@@ -8,14 +8,10 @@
     "POSTGRES_HOST"
   ],
   "tasks": {
-    "dev-server": {
+    "dev": {
       "persistent": true,
       "cache": false,
       "dependsOn": ["^build-db"]
-    },
-    "dev": {
-      "persistent": true,
-      "cache": false
     },
     "build-constants": {
       "outputs": ["./dist/**"]

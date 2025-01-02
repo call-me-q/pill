@@ -1,5 +1,5 @@
 import { timestamps } from "@/helpers/timestamp.helpers";
-import { RolesEnum } from "@vetamin/constants";
+import { RolesEnum } from "@pill/constants";
 import { boolean, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {

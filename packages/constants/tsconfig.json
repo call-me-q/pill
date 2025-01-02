@@ -1,5 +1,5 @@
 {
-  "extends": "@vetamin/tsconfig/base.json",
+  "extends": "@pill/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "."

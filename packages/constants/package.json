@@ -1,5 +1,5 @@
 {
-  "name": "@vetamin/constants",
+  "name": "@pill/constants",
   "version": "1.0.0",
   "exports": {
     ".": "./dist/main.js"

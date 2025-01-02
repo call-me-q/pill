@@ -1,5 +1,5 @@
 {
-  "name": "@vetamin/db",
+  "name": "@pill/db",
   "version": "1.0.0",
   "exports": {
     ".": "./dist/main.js"

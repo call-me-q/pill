@@ -1,9 +1,12 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { dbURL } from "./src/constants";
+import { drizzle } from "drizzle-orm/libsql";
+import { authToken, dbURL } from "./src/constants";
 
 export { accounts, sessions, users, verifications } from "./src/schema";
 
 export const db = drizzle({
-  connection: dbURL,
+  connection: {
+    url: dbURL,
+    authToken
+  },
   casing: "camelCase",
 });

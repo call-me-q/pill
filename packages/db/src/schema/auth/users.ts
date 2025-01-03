@@ -1,15 +1,16 @@
-import { timestamps } from "@/helpers/timestamp.helpers";
+import { timestamps } from "@/helpers/timestamp.helpers.js";
 import { RolesEnum } from "@pill/constants";
-import { boolean, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { nanoid } from "nanoid";
 
-export const users = pgTable("users", {
-  id: uuid("id").primaryKey().notNull().unique(), // Unique identifier for each user
-  name: varchar("name", { length: 255 }).notNull(), // User's chosen display name
-  email: varchar("email", { length: 255 }).notNull(), // User's email address for communication and login
-  emailVerified: boolean("emailVerified").default(false).notNull(), // Whether the user's email is verified
-  role: varchar("role", {
+export const users = sqliteTable("users", {
+  id: text().$defaultFn(() => nanoid()).primaryKey(), // Unique identifier for each account
+  name: text({ length: 255 }).notNull(), // User's chosen display name
+  email: text({ length: 140 }).notNull(), // User's email address for communication and login
+  emailVerified: integer({ mode: "boolean" }).default(false).notNull(), // Whether the user's email is verified
+  role: text({
     enum: Object.values(RolesEnum) as [string],
   }),
-  image: varchar("image", { length: 255 }), // User's image URL
+  image: text(), // User's image URL
   ...timestamps, // Timestamp of last info update
 });

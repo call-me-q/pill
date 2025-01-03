@@ -1,10 +1,11 @@
-import { timestamps } from "@/helpers/timestamp.helpers";
-import { pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { timestamps } from "@/helpers/timestamp.helpers.js";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { nanoid } from "nanoid";
 
-export const verifications = pgTable("verifications", {
-  id: uuid("id").primaryKey().notNull(), // Unique identifier for each verification
-  identifier: varchar("identifier", { length: 255 }).notNull(), // Identifier for the verification request
-  value: varchar("value", { length: 255 }).notNull(), // Value to be verified
-  expiresAt: timestamp("expire_at").notNull(), // Expiration time for the verification request
+export const verifications = sqliteTable("verifications", {
+  id: text().$defaultFn(() => nanoid()).primaryKey(), // Unique identifier for each account
+  identifier: text().notNull(), // Identifier for the verification request
+  value: text().notNull(), // Value to be verified
+  expiresAt: integer({ mode: "timestamp" }).notNull(), // Expiration time for the verification request
   ...timestamps,
 });

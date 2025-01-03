@@ -1,11 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": [
-    "POSTGRES_USER",
-    "POSTGRES_PASSWORD",
-    "POSTGRES_DB",
-    "POSTGRES_PORT",
-    "POSTGRES_HOST"
+    "TURSO_DATABASE_URL",
+"TURSO_AUTH_TOKEN"
   ],
   "tasks": {
     "dev": {

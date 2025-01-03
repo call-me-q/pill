@@ -1,19 +1,20 @@
-import { timestamps } from "@/helpers/timestamp.helpers";
-import { pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { users } from "./users"; // Assuming the users table is defined in users.ts
+import { timestamps } from "@/helpers/timestamp.helpers.js";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { nanoid } from 'nanoid';
+import { users } from "./users.js"; // Assuming the users table is defined in users.ts
 
-export const accounts = pgTable("accounts", {
-  id: uuid("id").primaryKey().notNull(), // Unique identifier for each account
-  userId: uuid("user_id")
+export const accounts = sqliteTable("accounts", {
+  id: text().$defaultFn(() => nanoid()).primaryKey(), // Unique identifier for each account
+  userId: text()
     .notNull()
     .references(() => users.id), // Foreign key linking to the users table
-  accountId: varchar("account_id", { length: 255 }).notNull(), // Account ID provided by SSO or userId for credential accounts
-  providerId: varchar("provider_id", { length: 255 }).notNull(), // Provider identifier
-  accessToken: varchar("access_token", { length: 255 }), // Optional access token from provider
-  refreshToken: varchar("refresh_token", { length: 255 }), // Optional refresh token from provider
-  accessTokenExpiresAt: timestamp("access_token_expires_at"), // Optional expiration time for the access token
-  refreshTokenExpiresAt: timestamp("refreshToken_expires_at"), // Optional expiration time for the refresh token
-  scope: varchar("scope", { length: 255 }), // Optional scope of the account
-  password: varchar("password", { length: 255 }), // Password for email/password authentication
+  accountId: text({ length: 255 }).notNull(), // Account ID provided by SSO or userId for credential accounts
+  providerId: text({ length: 255 }).notNull(), // Provider identifier
+  accessToken: text({ length: 255 }), // Optional access token from provider
+  refreshToken: text({ length: 255 }), // Optional refresh token from provider
+  accessTokenExpiresAt: integer({ mode: "timestamp_ms" }), // Optional expiration time for the access token
+  refreshTokenExpiresAt: integer({ mode: "timestamp_ms" }), // Optional expiration time for the refresh token
+  scope: text({ length: 255 }), // Optional scope of the account
+  password: text({ length: 255 }), // Password for email/password authentication
   ...timestamps,
 });

@@ -1,6 +1,6 @@
 export const RolesEnum = {
-  VET: "vet",
   STAFF: "staff",
   MANAGEMENT: "management",
   BEHOLDER: "beholder",
+  CUSTOMER: "customer",
 } as const;

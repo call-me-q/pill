@@ -1,8 +1,12 @@
 declare const RolesEnum: {
-    readonly VET: "vet";
     readonly STAFF: "staff";
     readonly MANAGEMENT: "management";
     readonly BEHOLDER: "beholder";
+    readonly CUSTOMER: "customer";
 };
 
-export { RolesEnum };
+declare const authModels: Record<string, {
+    modelName: string;
+}>;
+
+export { RolesEnum, authModels };

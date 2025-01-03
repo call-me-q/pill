@@ -1,12 +1,7 @@
 import { serve } from "@hono/node-server";
-
 import { certpath, keypath } from "./constants.js";
-import { server } from "./libs/server.js";
 import { getServeOptions } from "./libs/utils.js";
-
-server.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
+import "./routes";
 
 const serverInstance = getServeOptions(keypath, certpath);
 

@@ -20,18 +20,41 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // main.ts
 var main_exports = {};
 __export(main_exports, {
-  RolesEnum: () => RolesEnum
+  RolesEnum: () => RolesEnum,
+  authModels: () => authModels
 });
 module.exports = __toCommonJS(main_exports);
 
 // src/enums.ts
 var RolesEnum = {
-  VET: "vet",
   STAFF: "staff",
   MANAGEMENT: "management",
-  BEHOLDER: "beholder"
+  BEHOLDER: "beholder",
+  CUSTOMER: "customer"
 };
+
+// src/models.ts
+var modelNames = [
+  "organization",
+  "invitation",
+  "member",
+  "user",
+  "session",
+  "verification",
+  "account"
+];
+var genAuthModels = (array) => {
+  return array.reduce(
+    (acc, name) => {
+      acc[name] = { modelName: `${name}s` };
+      return acc;
+    },
+    {}
+  );
+};
+var authModels = genAuthModels(modelNames);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  RolesEnum
+  RolesEnum,
+  authModels
 });

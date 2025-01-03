@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["./main.ts"],
+  entry: ["./main.mts"],
   format: ["esm", "cjs"],
   target: "es2020",
   clean: true,

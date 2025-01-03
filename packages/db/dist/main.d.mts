@@ -1,31 +1,86 @@
-import * as drizzle_orm_node_postgres from 'drizzle-orm/node-postgres';
-import * as drizzle_orm_pg_core from 'drizzle-orm/pg-core';
+import * as _libsql_client from '@libsql/client';
+import * as drizzle_orm_libsql from 'drizzle-orm/libsql';
+import * as drizzle_orm_sqlite_core from 'drizzle-orm/sqlite-core';
 
-declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
+declare const accounts: drizzle_orm_sqlite_core.SQLiteTableWithColumns<{
     name: "accounts";
     schema: undefined;
     columns: {
-        id: drizzle_orm_pg_core.PgColumn<{
-            name: "id";
+        updatedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "updatedAt";
             tableName: "accounts";
-            dataType: "string";
-            columnType: "PgUUID";
-            data: string;
-            driverParam: string;
-            notNull: true;
-            hasDefault: false;
-            isPrimaryKey: true;
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
             isAutoincrement: false;
             hasRuntimeDefault: false;
             enumValues: undefined;
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
-        userId: drizzle_orm_pg_core.PgColumn<{
+        createdAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "createdAt";
+            tableName: "accounts";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        deletedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "deletedAt";
+            tableName: "accounts";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        id: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "id";
+            tableName: "accounts";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: true;
+            hasDefault: true;
+            isPrimaryKey: true;
+            isAutoincrement: false;
+            hasRuntimeDefault: true;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: undefined;
+        }>;
+        userId: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "userId";
             tableName: "accounts";
             dataType: "string";
-            columnType: "PgUUID";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
@@ -33,15 +88,18 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             isPrimaryKey: false;
             isAutoincrement: false;
             hasRuntimeDefault: false;
-            enumValues: undefined;
+            enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        accountId: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: undefined;
+        }>;
+        accountId: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "accountId";
             tableName: "accounts";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
@@ -51,13 +109,16 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        providerId: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: 255;
+        }>;
+        providerId: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "providerId";
             tableName: "accounts";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
@@ -67,13 +128,16 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        accessToken: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: 255;
+        }>;
+        accessToken: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "accessToken";
             tableName: "accounts";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: false;
@@ -83,13 +147,16 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        refreshToken: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: 255;
+        }>;
+        refreshToken: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "refreshToken";
             tableName: "accounts";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: false;
@@ -99,15 +166,18 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        expiresAt: drizzle_orm_pg_core.PgColumn<{
-            name: "expiresAt";
+        }, {}, {
+            length: 255;
+        }>;
+        accessTokenExpiresAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "accessTokenExpiresAt";
             tableName: "accounts";
             dataType: "date";
-            columnType: "PgTimestamp";
+            columnType: "SQLiteTimestamp";
             data: Date;
-            driverParam: string;
+            driverParam: number;
             notNull: false;
             hasDefault: false;
             isPrimaryKey: false;
@@ -115,13 +185,50 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: undefined;
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
-        password: drizzle_orm_pg_core.PgColumn<{
+        refreshTokenExpiresAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "refreshTokenExpiresAt";
+            tableName: "accounts";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        scope: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "scope";
+            tableName: "accounts";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: 255;
+        }>;
+        password: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "password";
             tableName: "accounts";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: false;
@@ -131,37 +238,132 @@ declare const accounts: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
+        }, {}, {
+            length: 255;
+        }>;
     };
-    dialect: "pg";
+    dialect: "sqlite";
 }>;
 
-declare const sessions: drizzle_orm_pg_core.PgTableWithColumns<{
+declare const sessions: drizzle_orm_sqlite_core.SQLiteTableWithColumns<{
     name: "sessions";
     schema: undefined;
     columns: {
-        id: drizzle_orm_pg_core.PgColumn<{
-            name: "id";
+        updatedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "updatedAt";
             tableName: "sessions";
-            dataType: "string";
-            columnType: "PgUUID";
-            data: string;
-            driverParam: string;
-            notNull: true;
-            hasDefault: false;
-            isPrimaryKey: true;
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
             isAutoincrement: false;
             hasRuntimeDefault: false;
             enumValues: undefined;
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
-        userId: drizzle_orm_pg_core.PgColumn<{
+        createdAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "createdAt";
+            tableName: "sessions";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        deletedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "deletedAt";
+            tableName: "sessions";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        activeOrganizationId: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "activeOrganizationId";
+            tableName: "sessions";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: 80;
+        }>;
+        impersonatedBy: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "impersonatedBy";
+            tableName: "sessions";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: 80;
+        }>;
+        id: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "id";
+            tableName: "sessions";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: true;
+            hasDefault: true;
+            isPrimaryKey: true;
+            isAutoincrement: false;
+            hasRuntimeDefault: true;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: undefined;
+        }>;
+        userId: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "userId";
             tableName: "sessions";
             dataType: "string";
-            columnType: "PgUUID";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
@@ -169,17 +371,39 @@ declare const sessions: drizzle_orm_pg_core.PgTableWithColumns<{
             isPrimaryKey: false;
             isAutoincrement: false;
             hasRuntimeDefault: false;
-            enumValues: undefined;
+            enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        expiresAt: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: undefined;
+        }>;
+        token: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "token";
+            tableName: "sessions";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: true;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: 255;
+        }>;
+        expiresAt: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "expiresAt";
             tableName: "sessions";
             dataType: "date";
-            columnType: "PgTimestamp";
+            columnType: "SQLiteTimestamp";
             data: Date;
-            driverParam: string;
+            driverParam: number;
             notNull: true;
             hasDefault: false;
             isPrimaryKey: false;
@@ -187,13 +411,14 @@ declare const sessions: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: undefined;
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
-        ipAddress: drizzle_orm_pg_core.PgColumn<{
+        ipAddress: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "ipAddress";
             tableName: "sessions";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: false;
@@ -203,13 +428,16 @@ declare const sessions: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        userAgent: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: 45;
+        }>;
+        userAgent: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "userAgent";
             tableName: "sessions";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: false;
@@ -219,23 +447,60 @@ declare const sessions: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
+        }, {}, {
+            length: 255;
+        }>;
     };
-    dialect: "pg";
+    dialect: "sqlite";
 }>;
 
-declare const users: drizzle_orm_pg_core.PgTableWithColumns<{
+declare const users: drizzle_orm_sqlite_core.SQLiteTableWithColumns<{
     name: "users";
     schema: undefined;
     columns: {
-        updated_at: drizzle_orm_pg_core.PgColumn<{
-            name: "updated_at";
+        updatedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "updatedAt";
             tableName: "users";
             dataType: "date";
-            columnType: "PgTimestamp";
+            columnType: "SQLiteTimestamp";
             data: Date;
-            driverParam: string;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        createdAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "createdAt";
+            tableName: "users";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        deletedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "deletedAt";
+            tableName: "users";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
             notNull: false;
             hasDefault: false;
             isPrimaryKey: false;
@@ -243,125 +508,50 @@ declare const users: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: undefined;
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
-        created_at: drizzle_orm_pg_core.PgColumn<{
-            name: "created_at";
-            tableName: "users";
-            dataType: "date";
-            columnType: "PgTimestamp";
-            data: Date;
-            driverParam: string;
-            notNull: true;
-            hasDefault: true;
-            isPrimaryKey: false;
-            isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: undefined;
-            baseColumn: never;
-            generated: undefined;
-        }, {}, {}>;
-        deleted_at: drizzle_orm_pg_core.PgColumn<{
-            name: "deleted_at";
-            tableName: "users";
-            dataType: "date";
-            columnType: "PgTimestamp";
-            data: Date;
-            driverParam: string;
-            notNull: false;
-            hasDefault: false;
-            isPrimaryKey: false;
-            isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: undefined;
-            baseColumn: never;
-            generated: undefined;
-        }, {}, {}>;
-        id: drizzle_orm_pg_core.PgColumn<{
-            name: "id";
-            tableName: "users";
-            dataType: "string";
-            columnType: "PgUUID";
-            data: string;
-            driverParam: string;
-            notNull: true;
-            hasDefault: false;
-            isPrimaryKey: true;
-            isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: undefined;
-            baseColumn: never;
-            generated: undefined;
-        }, {}, {}>;
-        name: drizzle_orm_pg_core.PgColumn<{
-            name: "name";
-            tableName: "users";
-            dataType: "string";
-            columnType: "PgVarchar";
-            data: string;
-            driverParam: string;
-            notNull: true;
-            hasDefault: false;
-            isPrimaryKey: false;
-            isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: [string, ...string[]];
-            baseColumn: never;
-            generated: undefined;
-        }, {}, {}>;
-        email: drizzle_orm_pg_core.PgColumn<{
-            name: "email";
-            tableName: "users";
-            dataType: "string";
-            columnType: "PgVarchar";
-            data: string;
-            driverParam: string;
-            notNull: true;
-            hasDefault: false;
-            isPrimaryKey: false;
-            isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: [string, ...string[]];
-            baseColumn: never;
-            generated: undefined;
-        }, {}, {}>;
-        emailVerified: drizzle_orm_pg_core.PgColumn<{
-            name: "emailVerified";
-            tableName: "users";
-            dataType: "boolean";
-            columnType: "PgBoolean";
-            data: boolean;
-            driverParam: boolean;
-            notNull: true;
-            hasDefault: true;
-            isPrimaryKey: false;
-            isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: undefined;
-            baseColumn: never;
-            generated: undefined;
-        }, {}, {}>;
-        role: drizzle_orm_pg_core.PgColumn<{
+        role: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "role";
             tableName: "users";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
-            notNull: false;
+            notNull: true;
             hasDefault: false;
             isPrimaryKey: false;
             isAutoincrement: false;
             hasRuntimeDefault: false;
             enumValues: [string];
             baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: number | undefined;
+        }>;
+        banned: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "banned";
+            tableName: "users";
+            dataType: "boolean";
+            columnType: "SQLiteBoolean";
+            data: boolean;
+            driverParam: number;
+            notNull: true;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
-        image: drizzle_orm_pg_core.PgColumn<{
-            name: "image";
+        banReason: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "banReason";
             tableName: "users";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: false;
@@ -371,37 +561,204 @@ declare const users: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: undefined;
+        }>;
+        banExpires: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "banExpires";
+            tableName: "users";
+            dataType: "number";
+            columnType: "SQLiteInteger";
+            data: number;
+            driverParam: number;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
+        id: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "id";
+            tableName: "users";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: true;
+            hasDefault: true;
+            isPrimaryKey: true;
+            isAutoincrement: false;
+            hasRuntimeDefault: true;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: undefined;
+        }>;
+        name: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "name";
+            tableName: "users";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: true;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: 255;
+        }>;
+        email: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "email";
+            tableName: "users";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: true;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: 140;
+        }>;
+        emailVerified: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "emailVerified";
+            tableName: "users";
+            dataType: "boolean";
+            columnType: "SQLiteBoolean";
+            data: boolean;
+            driverParam: number;
+            notNull: true;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        image: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "image";
+            tableName: "users";
+            dataType: "string";
+            columnType: "SQLiteText";
+            data: string;
+            driverParam: string;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: [string, ...string[]];
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {
+            length: undefined;
+        }>;
     };
-    dialect: "pg";
+    dialect: "sqlite";
 }>;
 
-declare const verifications: drizzle_orm_pg_core.PgTableWithColumns<{
+declare const verifications: drizzle_orm_sqlite_core.SQLiteTableWithColumns<{
     name: "verifications";
     schema: undefined;
     columns: {
-        id: drizzle_orm_pg_core.PgColumn<{
+        updatedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "updatedAt";
+            tableName: "verifications";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        createdAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "createdAt";
+            tableName: "verifications";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: true;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        deletedAt: drizzle_orm_sqlite_core.SQLiteColumn<{
+            name: "deletedAt";
+            tableName: "verifications";
+            dataType: "date";
+            columnType: "SQLiteTimestamp";
+            data: Date;
+            driverParam: number;
+            notNull: false;
+            hasDefault: false;
+            isPrimaryKey: false;
+            isAutoincrement: false;
+            hasRuntimeDefault: false;
+            enumValues: undefined;
+            baseColumn: never;
+            identity: undefined;
+            generated: undefined;
+        }, {}, {}>;
+        id: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "id";
             tableName: "verifications";
             dataType: "string";
-            columnType: "PgUUID";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
-            hasDefault: false;
+            hasDefault: true;
             isPrimaryKey: true;
             isAutoincrement: false;
-            hasRuntimeDefault: false;
-            enumValues: undefined;
+            hasRuntimeDefault: true;
+            enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        identifier: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: undefined;
+        }>;
+        identifier: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "identifier";
             tableName: "verifications";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
@@ -411,13 +768,16 @@ declare const verifications: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        value: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: undefined;
+        }>;
+        value: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "value";
             tableName: "verifications";
             dataType: "string";
-            columnType: "PgVarchar";
+            columnType: "SQLiteText";
             data: string;
             driverParam: string;
             notNull: true;
@@ -427,15 +787,18 @@ declare const verifications: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: [string, ...string[]];
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
-        }, {}, {}>;
-        expiresAt: drizzle_orm_pg_core.PgColumn<{
+        }, {}, {
+            length: undefined;
+        }>;
+        expiresAt: drizzle_orm_sqlite_core.SQLiteColumn<{
             name: "expiresAt";
             tableName: "verifications";
             dataType: "date";
-            columnType: "PgTimestamp";
+            columnType: "SQLiteTimestamp";
             data: Date;
-            driverParam: string;
+            driverParam: number;
             notNull: true;
             hasDefault: false;
             isPrimaryKey: false;
@@ -443,14 +806,15 @@ declare const verifications: drizzle_orm_pg_core.PgTableWithColumns<{
             hasRuntimeDefault: false;
             enumValues: undefined;
             baseColumn: never;
+            identity: undefined;
             generated: undefined;
         }, {}, {}>;
     };
-    dialect: "pg";
+    dialect: "sqlite";
 }>;
 
-declare const db: drizzle_orm_node_postgres.NodePgDatabase<Record<string, never>> & {
-    $client: drizzle_orm_node_postgres.NodePgClient;
+declare const db: drizzle_orm_libsql.LibSQLDatabase<Record<string, never>> & {
+    $client: _libsql_client.Client;
 };
 
 export { accounts, db, sessions, users, verifications };

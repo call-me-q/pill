@@ -1,2 +1,2 @@
-import "./auth.js";
-import "./base.js";
+import "./api/index.js";
+import "./base/index.js";

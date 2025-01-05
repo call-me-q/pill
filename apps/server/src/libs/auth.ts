@@ -1,10 +1,14 @@
 import { authModels, RolesEnum } from "@pill/constants";
 import { db, eq, users } from "@pill/db"; // your drizzle instance
-import { betterAuth } from "better-auth";
+import { betterAuth, type BetterAuthOptions } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, openAPI, organization } from "better-auth/plugins";
 
-// Convert the array into the desired object structure
+const authProviders = {
+  emailAndPassword: {
+    enabled: true,
+  },
+} satisfies BetterAuthOptions;
 
 export const auth = betterAuth({
   plugins: [
@@ -15,18 +19,21 @@ export const auth = betterAuth({
     }),
     organization({
       allowUserToCreateOrganization: async (user) => {
-        const { role } = await db
+        const query = await db
           .select({ role: users.role })
           .from(users)
           .where(eq(users.id, user.id))
           .then((q) => q[0]);
-        return role === RolesEnum.BEHOLDER;
+
+        if (query) return query.role === RolesEnum.BEHOLDER;
+        return false;
       },
     }),
   ],
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
+  ...authProviders,
   ...authModels,
 });
 

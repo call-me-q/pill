@@ -6,6 +6,7 @@
   "files": [
     "./apps.json",
     "./packages.json",
-    "./base.json"
+    "./base.json",
+    "./environment.d.ts"
   ]
 }

@@ -1,3 +1,5 @@
+import type { BetterAuthOptions } from "better-auth";
+
 const modelNames = [
   "organization",
   "invitation",
@@ -15,7 +17,7 @@ export const genAuthModels = (array: string[]) => {
       return acc;
     },
     {} as Record<string, { modelName: string }>
-  );
+  ) satisfies BetterAuthOptions;
 };
 
 export const authModels = genAuthModels(modelNames);

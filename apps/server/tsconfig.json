@@ -2,11 +2,12 @@
   "extends": "@pill/tsconfig/apps.json",
   "compilerOptions": {
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": ["node", "@pill/tsconfig/environment.d.ts"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "paths": {
       "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["./src"]
 }

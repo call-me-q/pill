@@ -1,9 +1,8 @@
 import { authModels, RolesEnum } from "@pill/constants";
-import { db, users } from "@pill/db"; // your drizzle instance
+import { db, eq, users } from "@pill/db"; // your drizzle instance
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, openAPI, organization } from "better-auth/plugins";
-import { eq } from "drizzle-orm";
 
 // Convert the array into the desired object structure
 

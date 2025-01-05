@@ -1,5 +1,6 @@
 import * as _libsql_client from '@libsql/client';
 import * as drizzle_orm_libsql from 'drizzle-orm/libsql';
+export { eq } from 'drizzle-orm';
 import * as drizzle_orm_sqlite_core from 'drizzle-orm/sqlite-core';
 
 declare const accounts: drizzle_orm_sqlite_core.SQLiteTableWithColumns<{

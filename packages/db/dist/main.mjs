@@ -15020,6 +15020,7 @@ var db = drizzle({
 export {
   accounts,
   db,
+  eq,
   sessions,
   users,
   verifications

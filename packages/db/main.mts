@@ -1,5 +1,6 @@
 import { drizzle } from "drizzle-orm/libsql";
 import { authToken, dbURL } from "./src/constants.js";
+export { eq } from "drizzle-orm";
 
 export {
   accounts,

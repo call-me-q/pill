@@ -4514,6 +4514,7 @@ var main_exports = {};
 __export(main_exports, {
   accounts: () => accounts,
   db: () => db,
+  eq: () => eq,
   sessions: () => sessions,
   users: () => users,
   verifications: () => verifications
@@ -15032,6 +15033,7 @@ var db = drizzle({
 0 && (module.exports = {
   accounts,
   db,
+  eq,
   sessions,
   users,
   verifications

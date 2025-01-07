@@ -10,7 +10,7 @@ const modelNames = [
   "account",
 ];
 
-export const genAuthModels = (array: string[]) => {
+const genAuthModels = (array: string[]) => {
   return array.reduce(
     (acc, name) => {
       acc[name] = { modelName: `${name}s` }; // Automatically pluralize

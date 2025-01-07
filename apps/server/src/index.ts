@@ -5,7 +5,9 @@ import "./routes/index.js";
 
 const serverInstance = getServeOptions(keypath, certpath);
 
-if (process.env.ENABLE_OPEN_API.toLowerCase() === "true")
+console.log(process.env.ENABLE_OPEN_API);
+
+if (process.env.ENABLE_OPEN_API?.toLowerCase() === "true")
   import("./libs/open-api.js");
 
 serve(serverInstance, (info) => {

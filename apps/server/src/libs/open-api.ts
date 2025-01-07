@@ -1,15 +1,27 @@
 import { apiReference } from "@scalar/hono-api-reference";
-import { serverOpenAPI } from "./server.js";
+import { openAPISpecs } from "hono-openapi";
+import { server } from "./server.js";
 
-serverOpenAPI.doc31("/open-api", {
-  openapi: "3.1.0",
-  info: { title: "foo", version: "1" },
-}); // new endpoint
+server.get(
+  "/open-api",
+  openAPISpecs(server, {
+    documentation: {
+      openapi: "3.1.0",
+      info: { title: "foo", version: "1" },
+      servers: [{ url: "" }],
+      externalDocs: {
+        description: "Auth Schema",
+        url: "/api/auth/reference",
+      },
+    },
+  })
+); // new endpoint
 
-serverOpenAPI.get(
+server.get(
   "/docs",
   apiReference({
     spec: {
+      theme: "saturn",
       url: "/open-api",
     },
   })

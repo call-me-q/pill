@@ -1,6 +1,5 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import type { auth } from "@/types.js";
 import { Hono } from "hono";
-import type { auth } from "./auth.js";
 
 interface IServer {
   Variables: {
@@ -10,4 +9,3 @@ interface IServer {
 }
 
 export const server = new Hono<IServer>();
-export const serverOpenAPI = new OpenAPIHono();

@@ -1,6 +1,6 @@
-import { auth } from "@/libs/auth.js";
-import { apiRoute } from "./server.js";
+import { server } from "@/libs/server.js";
+import { auth } from "./auth/lib.js";
 
-apiRoute.on(["POST", "GET"], "/auth/**", (c) => {
+server.on(["POST", "GET"], "/auth/**", (c) => {
   return auth.handler(c.req.raw);
 });

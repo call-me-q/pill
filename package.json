@@ -12,16 +12,15 @@
     "auth:secret": "npx @better-auth/cli@latest secret",
     "build:constants": "npx dotenvx run -- npx turbo build-constants",
     "build:db": "npx dotenvx run -- npx turbo build-db",
-    "build:env": "tsx ./scripts/gen-process-env-types.mts --output ./packages/tsconfig/",
+    "build:env": "tsx ./scripts/process-env-types/main.mts --output ./packages/tsconfig/",
     "postbuild:env": "npx dotenvx ext genexample",
     "db:gen": "npx dotenvx run -- npm run generate-db -w @pill/db",
     "db:mig": "npx dotenvx run -- npm run migrate-db -w @pill/db",
-    "dev": "npx dotenvx run -- npx turbo dev"
+    "dev": "npx dotenvx run --verbose -- npx turbo dev"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.32.0",
     "@hono/node-server": "^1.13.5",
-    "@hono/zod-openapi": "^0.18.3",
     "@hono/zod-validator": "^0.4.2",
     "@libsql/client": "^0.14.0",
     "@pill/constants": "*",
@@ -30,8 +29,10 @@
     "better-auth": "^1.1.8",
     "drizzle-orm": "^0.38.3",
     "hono": "^4.6.16",
+    "hono-openapi": "^0.3.1",
     "nanoid": "^5.0.9",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "zod-openapi": "^4.2.2"
   },
   "devDependencies": {
     "@alienfast/find-monorepo-root": "^1.0.9",

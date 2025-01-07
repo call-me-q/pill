@@ -1,3 +1,3 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
+import { Hono } from "hono";
 
-export const baseRoute = new OpenAPIHono();
+export const baseRoute = new Hono();

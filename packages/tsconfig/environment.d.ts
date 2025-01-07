@@ -8,10 +8,13 @@ export {};
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      TURSO_DATABASE_URL: string;
-      TURSO_AUTH_TOKEN: string;
-      BETTER_AUTH_SECRET: string;
-      ENABLE_OPEN_API: string;
+      TURSO_DATABASE_URL: string | undefined;
+      TURSO_AUTH_TOKEN: string | undefined;
+      BETTER_AUTH_SECRET: string | undefined;
+      ENABLE_OPEN_API: string | undefined;
+      ENABLE_SSL: string | undefined;
+      APP_HOST: string | undefined;
+      APP_PORT: string | undefined;
     }
   }
 }

@@ -1,12 +1,13 @@
-import { generateTypeDefinitions } from "./libs/generate-type-definitions";
-import { parseArguments } from "./libs/parse-arguments";
-import { parseEnvFile } from "./libs/parse-env-file";
-import { resolveEnvFilePath } from "./libs/resolve-env-file-path";
-import { writeTypeDefinitions } from "./libs/write-type-definitions";
+import { generateTypeDefinitions } from "./libs/generate-type-definitions.js";
+import { parseArguments } from "./libs/parse-arguments.js";
+import { parseEnvFile } from "./libs/parse-env-file.js";
+import { resolveEnvFilePath } from "./libs/resolve-env-file-path.js";
+import { writeTurboGlobalEnv } from "./libs/write-turbo-globalEnv.js";
+import { writeTypeDefinitions } from "./libs/write-type-definitions.js";
 
 const main = async () => {
   // Parse CLI arguments
-  const { output: outputFilePath } = parseArguments();
+  const outputFilePath = await parseArguments();
 
   // Resolve the .env file path
   const envFilePath = await resolveEnvFilePath();
@@ -19,6 +20,9 @@ const main = async () => {
 
   // Write the type definitions to environment.d.ts
   writeTypeDefinitions(typeDefinitions, outputFilePath);
+
+  // Update turbo.json file
+  writeTurboGlobalEnv(Object.keys(envVariables));
 };
 
 main().catch((err) => {

@@ -6,13 +6,14 @@
   "author": "Muhammad Tsany Qudsi <phlacx@hotmail.com>",
   "workspaces": [
     "./apps/*",
-    "./packages/*"
+    "./packages/*",
+    "./scripts/*"
   ],
   "scripts": {
     "auth:secret": "npx @better-auth/cli@latest secret",
     "build:constants": "npx dotenvx run -- npx turbo build-constants",
     "build:db": "npx dotenvx run -- npx turbo build-db",
-    "build:env": "tsx ./scripts/process-env-types/main.mts --output ./packages/tsconfig/",
+    "build:env": "npx dotenvx run -- npm start -w @pill/process-env-types",
     "postbuild:env": "npx dotenvx ext genexample",
     "db:gen": "npx dotenvx run -- npm run generate-db -w @pill/db",
     "db:mig": "npx dotenvx run -- npm run migrate-db -w @pill/db",

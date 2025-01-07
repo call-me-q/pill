@@ -3,23 +3,32 @@
   "globalEnv": [
     "TURSO_DATABASE_URL",
     "TURSO_AUTH_TOKEN",
-    "APP_PORT",
-    "APP_HOST",
+    "BETTER_AUTH_SECRET",
+    "ENABLE_OPEN_API",
     "ENABLE_SSL",
-    "ENABLE_OPEN_API"
+    "APP_HOST",
+    "APP_PORT"
   ],
   "tasks": {
     "dev": {
       "persistent": true,
       "cache": false,
-      "dependsOn": ["^build-db"]
+      "dependsOn": [
+        "^build-db"
+      ]
     },
     "build-constants": {
-      "outputs": ["./dist/**"]
+      "outputs": [
+        "./dist/**"
+      ]
     },
     "build-db": {
-      "outputs": ["./dist/**"],
-      "dependsOn": ["^build-constants"]
+      "outputs": [
+        "./dist/**"
+      ],
+      "dependsOn": [
+        "^build-constants"
+      ]
     }
   }
 }

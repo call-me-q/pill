@@ -1,5 +1,5 @@
 import { server } from "@/libs/server.js";
 import "./auth.js";
-import { api } from "./server.js";
+import { apiRoute } from "./server.js";
 
-server.route("/api", api);
+server.route("/api", apiRoute);

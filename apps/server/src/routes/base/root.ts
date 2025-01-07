@@ -1,5 +1,5 @@
-import { base } from "./server.js";
+import { baseRoute } from "./server.js";
 
-base.get("/", (c) => {
+baseRoute.get("/", (c) => {
   return c.text("Hello and Welcome to PILL!");
 });

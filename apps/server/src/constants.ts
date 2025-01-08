@@ -4,3 +4,5 @@ export const isEncrypted: boolean =
   process.env.KEY != undefined && process.env.KEY.length > 0;
 export const keypath: string | undefined = process.env.KEY;
 export const certpath: string | undefined = process.env.CERT;
+export const isOpenAPIEnabled: boolean =
+  process.env.ENABLE_OPEN_API?.toLowerCase() === "true";

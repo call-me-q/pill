@@ -32,6 +32,7 @@
     "hono": "^4.6.16",
     "hono-openapi": "^0.3.1",
     "nanoid": "^5.0.9",
+    "openapi-merge": "^1.3.3",
     "zod": "^3.24.1",
     "zod-openapi": "^4.2.2"
   },
@@ -42,6 +43,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.10.4",
+    "atlassian-openapi": "^1.0.20",
     "drizzle-kit": "^0.30.1",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",

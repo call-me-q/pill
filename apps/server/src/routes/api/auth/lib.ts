@@ -8,7 +8,9 @@ import { authProviders } from "./providers.js";
 
 export const auth = betterAuth({
   plugins: [
-    openAPI(),
+    openAPI({
+      disableDefaultReference: true,
+    }),
     admin({
       defaultRole: RolesEnum.CUSTOMER,
       adminRole: [RolesEnum.MANAGEMENT, RolesEnum.BEHOLDER],

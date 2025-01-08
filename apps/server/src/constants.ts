@@ -6,3 +6,5 @@ export const keypath: string | undefined = process.env.KEY;
 export const certpath: string | undefined = process.env.CERT;
 export const isOpenAPIEnabled: boolean =
   process.env.ENABLE_OPEN_API?.toLowerCase() === "true";
+export const APINotFound: string =
+  process.env.APINOTFOUND_MESSAGE || "API NOT FOUND";

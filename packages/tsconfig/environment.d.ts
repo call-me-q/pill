@@ -15,6 +15,7 @@ declare global {
       ENABLE_SSL: string | undefined;
       APP_HOST: string | undefined;
       APP_PORT: string | undefined;
+      APINOTFOUND_MESSAGE: string | undefined;
     }
   }
 }

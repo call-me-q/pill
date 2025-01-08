@@ -1,5 +1,5 @@
-import { RolesEnum } from "@pill/constants";
-import { db, eq, users } from "@pill/db";
+import { RolesEnum } from "@capsule/constants";
+import { db, eq, users } from "@capsule/db";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { admin, openAPI, organization } from "better-auth/plugins";

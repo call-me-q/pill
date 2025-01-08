@@ -6,7 +6,7 @@
     "isolatedModules": true,
     "lib": ["es2022", "DOM", "DOM.Iterable"],
     "module": "NodeNext",
-    "types": ["@pill/tsconfig/environment.d.ts", "node"],
+    "types": ["@capsule/tsconfig/environment.d.ts", "node"],
     "moduleResolution": "nodenext",
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,

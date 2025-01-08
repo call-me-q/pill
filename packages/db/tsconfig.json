@@ -1,5 +1,5 @@
 {
-  "extends": "@pill/tsconfig/packages.json",
+  "extends": "@capsule/tsconfig/packages.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",

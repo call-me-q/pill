@@ -1,5 +1,5 @@
 import { timestamps } from "@/helpers/timestamp.helpers.js";
-import { RolesEnum } from "@pill/constants";
+import { RolesEnum } from "@capsule/constants";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 import { nanoid } from "nanoid";
 

@@ -1,7 +1,7 @@
 {
-  "name": "pill",
+  "name": "capsule",
   "version": "0.1.0",
-  "description": "Monorepo for pill",
+  "description": "Monorepo for capsule",
   "license": "UNLICENSED",
   "author": "Muhammad Tsany Qudsi <phlacx@hotmail.com>",
   "workspaces": [
@@ -13,10 +13,10 @@
     "auth:secret": "npx @better-auth/cli@latest secret",
     "build:constants": "npx dotenvx run -- npx turbo build-constants",
     "build:db": "npx dotenvx run -- npx turbo build-db",
-    "build:env": "npx dotenvx run -- npm start -w @pill/process-env-types",
+    "build:env": "npx dotenvx run -- npm start -w @capsule/process-env-types",
     "postbuild:env": "npx dotenvx ext genexample",
-    "db:gen": "npx dotenvx run -- npm run generate-db -w @pill/db",
-    "db:mig": "npx dotenvx run -- npm run migrate-db -w @pill/db",
+    "db:gen": "npx dotenvx run -- npm run generate-db -w @capsule/db",
+    "db:mig": "npx dotenvx run -- npm run migrate-db -w @capsule/db",
     "dev": "npx dotenvx run --verbose -- npx turbo dev"
   },
   "dependencies": {
@@ -24,8 +24,8 @@
     "@hono/node-server": "^1.13.5",
     "@hono/zod-validator": "^0.4.2",
     "@libsql/client": "^0.14.0",
-    "@pill/constants": "*",
-    "@pill/db": "*",
+    "@capsule/constants": "*",
+    "@capsule/db": "*",
     "@scalar/hono-api-reference": "^0.5.165",
     "better-auth": "^1.1.8",
     "drizzle-orm": "^0.38.3",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@alienfast/find-monorepo-root": "^1.0.9",
     "@eslint/js": "^9.17.0",
-    "@pill/tsconfig": "*",
+    "@capsule/tsconfig": "*",
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/node": "^22.10.4",

@@ -7,6 +7,6 @@ baseRoute.get(
     tags: ["dsa"],
   }),
   (c) => {
-    return c.text("Hello and Welcome to PILL!");
+    return c.text("Hello and Welcome to capsule!");
   }
 );

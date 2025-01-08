@@ -1,8 +1,8 @@
 {
-  "name": "@pill/process-env-types",
+  "name": "@capsule/process-env-types",
   "type": "module",
   "version": "0.2.0",
   "scripts": {
-    "start": "tsx ./main.ts --output @pill/tsconfig"
+    "start": "tsx ./main.ts --output @capsule/tsconfig"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "extends": "@pill/tsconfig/base.json",
+  "extends": "@capsule/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "."

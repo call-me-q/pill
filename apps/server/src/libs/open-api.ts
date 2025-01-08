@@ -19,42 +19,36 @@ server.get(
 
 // Merge both Better Auth and non Better Auth Open API Schema
 server.get("/open-api/reference", async (c) => {
-  const nonAuthRef = await fetch("http://localhost:3000/open-api").then(
-    (res) => res.body
-  );
-  let result = "";
-
-  if (nonAuthRef) {
-    const reader = nonAuthRef.getReader();
-    const decoder = new TextDecoder();
-
-    let status = false;
-    while (!status) {
-      const { value, done } = await reader.read();
-      if (value) {
-        result += decoder.decode(value, { stream: true });
-      }
-      status = done;
-    }
+  // Fetch and parse non-auth schema
+  const response = await fetch("http://localhost:3000/open-api");
+  if (!response.ok) {
+    throw new Error(`Failed to fetch OpenAPI spec: ${response.statusText}`);
   }
 
-  const authRef = (await auth.api.generateOpenAPISchema()) as Swagger.SwaggerV3;
+  const text = await response.text();
+  const nonAuthSpec = JSON.parse(text);
 
+  // Generate auth schema
+  const authSpec =
+    (await auth.api.generateOpenAPISchema()) as Swagger.SwaggerV3;
+  if (!authSpec) {
+    console.error("Error generating OpenAPI reference:");
+    return c.json({ error: "Internal server error" }, 500);
+  }
+  // Merge schemas
   const mergeResult = merge([
+    { oas: nonAuthSpec },
     {
-      oas: JSON.parse(result),
-    },
-    {
-      oas: authRef,
-      pathModification: {
-        prepend: "/api/auth",
-      },
+      oas: authSpec,
+      pathModification: { prepend: "/api/auth" },
     },
   ]);
 
-  if (isErrorResult(mergeResult)) return c.body(JSON.stringify(c.error));
+  if (isErrorResult(mergeResult)) {
+    return c.json({ error: "Failed to merge OpenAPI specs" }, 400);
+  }
 
-  return c.body(JSON.stringify(mergeResult.output), 200);
+  return c.json(mergeResult.output);
 });
 
 // Open API UI

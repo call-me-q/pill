@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "codeandstuff.package-json-upgrade",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "unional.vscode-sort-package-json",
+    "melro-io.selectscript"
+  ]
+}

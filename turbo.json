@@ -6,8 +6,8 @@
     "BETTER_AUTH_SECRET",
     "ENABLE_OPEN_API",
     "ENABLE_SSL",
-    "APP_HOST",
-    "APP_PORT",
+    "SERVER_HOST",
+    "SERVER_PORT",
     "APINOTFOUND_MESSAGE"
   ],
   "tasks": {

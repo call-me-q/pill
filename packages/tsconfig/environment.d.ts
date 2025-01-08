@@ -13,8 +13,8 @@ declare global {
       BETTER_AUTH_SECRET: string | undefined;
       ENABLE_OPEN_API: string | undefined;
       ENABLE_SSL: string | undefined;
-      APP_HOST: string | undefined;
-      APP_PORT: string | undefined;
+      SERVER_HOST: string | undefined;
+      SERVER_PORT: string | undefined;
       APINOTFOUND_MESSAGE: string | undefined;
     }
   }
